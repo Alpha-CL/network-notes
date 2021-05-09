@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+
+
+<script>
+
+
+    function jsonp(data) {
+
+        console.log(data);
+
+    }
+
+
+</script>
+
+
+<script src="http://developer.duyiedu.com/edu/testJsonp?callback=jsonp"></script>
+
+<script>
+
+
+    /**
+     * 获取一个接口的数据
+     *
+     * 此接口和当前页面非同源          // 跨域
+     *
+     * 但这个接口支持 JSONP
+     *
+     */
+
+    /**
+     * 网络资源请求的方式
+     *
+     * 1) 在浏览器中直接输入网址                                                                     // 无法用代码控制
+     *
+     * 2) Location.href = "url"; 可以发出请求，但页面发生跳转                                         // 页面会跳转
+     *
+     * 3) 带有 src 属性的标签，请求可以发出，服务端可以处理并返回，但是返回后是否被应用取决于浏览器           // 页面无法处理返回结果
+     *
+     * 4) 带有 href 属性的标签，请求可以发出，服务端可以处理并返回，但是返回后是否被应用取决于浏览器          // 页面无法处理返回结果
+     *
+     * 5) 带有 action 属性的标签( form 表单 )，可以发出请求，但页面发生跳转                              // 页面会跳转
+     *
+     * ...
+     *
+     * => 希望有一种方式: 可以用代码控制，页面不会跳转，服务端返回的结果可以用 JS 继续处理                   // Ajax( 不能跨域 )
+     *
+     */
+
+    /**
+     * 解决方案
+     *
+     * 3) 带有 src 属性的标签，请求可以发出，服务端可以处理并返回，但是返回后是否被应用取决于浏览器           // 页面无法处理返回结果
+     *
+     * < script src="" >< /script > 标签中 引入的资源 会当作 Javascript 代码执行
+     *
+     */
+
+    /**
+     * JSONP 原理
+     *
+     *
+     * 1) 判断请求与当前页面的域，是否同源，若同源，则发送正常的 ajax
+     *
+     *                                 若不同源，则生成 script 标签
+     *
+     * 2) 生成一个随机的 callback=jsonpName 的名字，并用这个名称 创建一个函数 用于接收返回的数据 jsonpName( data );
+     *
+     * 3）设置 < script src="" >< /script > 中的 src 属性
+     *
+     * 4) 设置 callback 作为参数拼接在 '跨域请求地址' 的后面
+     *
+     *
+     * 5) 后端接收请求，开始准备需返回的数据
+     *
+     * 6) 因 请求类型为 'jsonp'，所以需要拼接数据
+     *
+     *    originData: {status: 'ok', msg: 'test'};
+     *
+     *    => jsonpData: jsonpName{status: 'ok', msg: 'test'};
+     *
+     * 7) 后端将拼接好的 jsonpData 返回给浏览器
+     *
+     *
+     * 8) 浏览器收到返回的资源，因是 < script src="" >< /script > 中的 src 返回的，所以作为 js 代码执行
+     *
+     * 9) 返回数据被包裹成了函数的执行代码，因而调用 jsonpName( data ); 即可接收 作为参数传入的 返回资源数据，用于后续代码处理
+     *
+     */
+
+
+
+
+</script>
+
+
+</body>
+</html>

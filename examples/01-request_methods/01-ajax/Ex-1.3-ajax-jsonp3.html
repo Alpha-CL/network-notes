@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+    var $ = {
+        ajax: function (options) {
+
+            let url = options.url,
+                type = options.type,
+                dataType = options.dataType,
+                targetProtocol = '',
+                targetHost = '';
+
+            if (url.indexOf('http://') === 0 || url.indexOf('https://') === 0) {            // 判断是否同源
+
+                let targetUrl = new URL(url);
+
+                targetProtocol = targetUrl.protocol;
+                targetHost = targetUrl.host;
+
+            } else {
+
+                targetProtocol = location.protocol;
+                targetHost = location.host;
+            }
+
+
+            if (dataType === 'jsonp') {                                                     // 判断是否为 jsonp
+
+                if (location.protocol === targetProtocol && location.host === targetHost) {
+
+
+                } else {
+
+                    let callback = 'cb' + Math.floor(Math.random() * 10000),                // 生成随机 callback 名称
+                        script = document.createElement('script');
+
+                    /**
+                     * 给 window 添加方法，将所 返回的数据 作为 window 新增方法的参数返回使用
+                     *
+                     */
+
+                    window[callback] = options.success;
+
+                    if (url.indexOf('?') > 0) {                                             // 表示已经有参数
+
+                        script.src = url + '&callback=' + callback;
+
+                    } else {                                                                // 表示还未有参数
+
+                        script.src = url + '?callback=' + callback;
+                    }
+
+                    script.id = callback;
+                    document.body.appendChild(script);
+                }
+            }
+        }
+    };
+
+
+    $.ajax({
+
+        url: 'http://developer.duyiedu.com/edu/testJsonp',
+
+        type: 'get',
+
+        dataType: 'jsonp',
+
+        success: function (data) {
+
+            console.log(data);
+        }
+    })
+
+
+</script>
+
+
+</body>
+</html>

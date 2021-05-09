@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+
+var xhr = null;
+
+if (window.XMLHttpRequest) {
+
+    xhr = new XMLHttpRequest();
+
+} else {
+
+    xhr = new ActiveXObject("Microsoft.XMLHttp");
+}
+
+/**
+ * xhr.readyState: 请求状态码
+ *
+ * 0            // 请求未初始化
+ * 1            // 建立服务器连接
+ * 2            // 收到请求
+ * 3            // 处理要求
+ * 4            // 请求已完成且响应已准备就绪
+ *
+ */
+
+
+console.log(xhr.readyState);                            // 0
+
+
+/**
+ * open(method: string, url: string, async: boolean, username?: string | null, password?: string | null);
+ *
+ * async: boolean;              // 请求模式( true: 异步 / false: 同步 ) default: true;
+ *                              // 计算机中 同步( 表示串行 )，异步( 表示时执行 )
+ *
+ */
+
+xhr.open("get", "http://developer.duyiedu.com/edu/testAjaxCrossOrigin", true);
+
+
+console.log(xhr.readyState);                            // 1
+
+
+/**
+ * xhr.send(); 应放在最后，为确保 xhr.onreadystatechange = function () {} 执行完
+ *
+ * 否则，由于响应过快，已经发生改变并接收数据，但是 xhr.onreadystatechange = function () {} 却还没有执行完
+ */
+
+// xhr.send();
+
+
+// console.log(xhr.readyState);                            // 1
+
+
+xhr.onreadystatechange = function () {
+
+    // 每当 readyState 状态发生改变就会执行一次 onreadystatechange();
+    //
+    // console.log(xhr.readyState);                        // 2
+    // console.log(xhr.readyState);                        // 3
+    // console.log(xhr.readyState);                        // 4
+
+    /**
+     * status: 网络请求状态吗
+     *
+     * 2**              // 表示成功
+     * 3**              // 表示重定向
+     * 4**              // 表示客户端错误，404( 未找到页面 )
+     * 5**              // 表示服务端错误
+     *
+     */
+
+    if (xhr.readyState === 4 && xhr.status === 200) {
+
+        /**
+         * xhr.responseTest: 返回的结果
+         *
+         */
+
+        console.log(xhr.responseText);
+
+        var data = JSON.parse(xhr.responseText);            // 将返回的数据转换为 JSON 数据格式
+
+        console.log(data);
+    }
+};
+
+xhr.send();                                                 // 为确保 xhr.onreadystatechange 赋值完毕
+
+
+</script>
+
+
+</body>
+</html>

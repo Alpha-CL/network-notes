@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+
+<script>
+
+
+    /**
+     * JSONP
+     *
+     * 发送时: Request URL: http://developer.duyiedu.com/edu/testJsonp? 'callback=xxxxxxxxxxx'( jsonp 增加的字段 )
+     *
+     * 返回时: callbackName( data: json )              // 返回数据 被增加的字段 包裹
+     */
+
+    $.ajax({
+
+        url: 'http://developer.duyiedu.com/edu/testJsonp',
+
+        /**
+         * 当跨域请求时，是否 jsonp 中只能使用 get，是否所有手动设置的 post 方法都会被 jq 转换为 get
+         *
+         *
+         * jQuery 会先判断是否同源，如果同源，则不改变 type 手动设置的方法
+         *
+         *                       若不同源，则无论设置什么，type 都为 get
+         */
+
+        type: 'get',                    // jsonp 跨域，只能使用 get 方法，如果手动设置 post，jQuery 会自动转换为 get
+
+        dataType: 'jsonp',
+
+        success: function (data) {
+
+            console.log(data);
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>
