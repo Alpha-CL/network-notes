@@ -67,7 +67,7 @@ ssh-keygen -t rsd                   // 密钥生成后存储的路径: /Users/la
 
 // install dev server tools
 
-yum groupinstall 'Development tools' 
+yum groupinstall -y 'Development tools' 
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -184,12 +184,16 @@ sudo yum localinstall mysql80-community-release-el7-3.noarch.rpm
 // 安装 mysql
 sudo yum install mysql-community-server -y
 
+( centos7 必须先添加 mysql社区 repo)
+sudo rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+
+
 // 若安装报错，则执行该代码( 禁用 yum 中的 mysql 模块 )
 sudo yum module disable mysql
 
 
 // 启动 mysql
-sudo systemctl start msyqld
+sudo systemctl start mysql
 
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
@@ -205,7 +209,7 @@ grep 'temporary password' /var/log/mysqld.log
 mysql -uroot -p
 [password]
 
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'newPwd';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Liang1992@12';
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -360,19 +364,28 @@ touch [fe].conf [be].conf
 // [fe].conf
 
 
-server {                                        // 添加 fe-server 配置信息
+# vi /etc/nginx/conf.d/client.conf
+# cd /home/app/client
+server {
 
-    listen       80;
-    server_name  [domain];                      // 自定义域名，用于访问
+    listen       __port__;
+    server_name  __domain/ip__;
 
-    location / {
-        root   /home/nginx/[fe];                // 匹配指定目录
+    location / {                                    # match-url: domain/
+        root   /home/app/client;
         index  index.html index.htm;
     }
     
-    location ^~ /api/ {                         // 添加反向代理
+    # location ~* \.(gif|jpg|jpeg)$ {               # match-url: ~*/.(gif|jpg|jpeg)$
+    # }
+    
+    location ^~ /api/ {                             # match-url: domian/^api/*
         rewrite  ^/api/(.*)$ /$1 break;
-        proxy_pass  http://127.0.0.1:3000;
+        proxy_pass  http://127.0.0.1:__api_port__;
+        
+        # proxy_set_header Host $host:$server_port;
+        # proxy_redirect / /my/;
+        # proxy_set_header xxx-xxx;
     }
 }
 
@@ -462,15 +475,3 @@ create database [mybd];
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ```
-
-
-
-
-
-
-
-
-
-
-
-

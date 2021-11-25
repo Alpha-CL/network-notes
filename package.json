@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Alpha-CL/network-notes/issues"
   },
-  "homepage": "https://github.com/Alpha-CL/network-notes#readme"
+  "homepage": "https://github.com/Alpha-CL/network-notes#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
 }
