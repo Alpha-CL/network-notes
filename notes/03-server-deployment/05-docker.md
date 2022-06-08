@@ -113,7 +113,7 @@ rootfs 就是各种不同操作系统的发行版本
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
 
 
-// -v [outer_ile]:[inner_file]: 创建容器内外映射文 件
+// -v [outer_file_path]:[inner_file_path]: 创建容器内外映射文 件
 // :ro === 只读
 
 docker run -itd --name [name] -p [host]:[port] -v [outer_ile]:[inner_file]:or [docker_image]
