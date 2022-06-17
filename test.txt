@@ -1,0 +1,1359 @@
+echo '
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+set nocompatible              		" 去除VI一致性 必须 
+
+filetype off                  		" 必须 
+
+
+
+" 设置包括vundle和初始化相关的runtime path
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" 另一种选择, 指定一个vundle安装插件的路径
+" call vundle#begin("~/some/path/here")
+
+
+" 你的所有插件需要写在这之后
+
+" 让vundle管理插件版本,必须
+Plugin "VundleVim/Vundle.vim"
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+" 以下范例用来支持不同格式的插件安装.
+" 请将安装插件的命令放在vundle#begin和vundle#end之间.
+" Github上的插件
+" 格式为 Plugin "用户名/插件仓库名"
+
+
+
+" ----------------------- Theme Plugins Start ！ ------------------------------
+
+
+" candid.vim 要放在 .vim/colors/ 路径下
+" This is vim theme
+" set background=dark
+" colorscheme candid
+
+" vim neon theme
+" Plug "sainnhe/edge"
+
+" 语法颜色突出显示
+" Plug "sheerun/vim-polyglot"
+
+
+" 美化状态
+" 已成功
+Plugin "vim-airline/vim-airline"
+
+
+" 状态栏主题
+" 已成功
+Plugin "vim-airline/vim-airline-themes"
+
+
+" 标签栏
+" 
+" 使用TagBar之前先确保已经有ctags
+" brew install ctags
+" 已成功
+Plugin "majutsushi/tagbar"
+
+
+" ----------------------- Theme Plugins End ！ --------------------------------
+
+
+
+
+" ----------------------- Basic Plugins Start ！ ------------------------------
+
+
+
+" 文件版本控制器
+" 待学习
+Plugin "tpope/vim-fugitive"
+
+" 待学习
+Plugin "airblade/vim-gitgutter"
+
+
+" 目录树插件
+" 已成功
+Plugin "scrooloose/nerdtree"
+
+
+" 快速跳转
+" 初步学会
+" 需再次去 github 中学习
+Plugin "easymotion/vim-easymotion"
+
+
+" 代码对齐
+" 没有配置信息 / 需学习命令
+Plugin "godlygeek/tabular"
+
+
+" 书签插件
+" 已成功 / 待学习命令
+Plugin "mattesgroeger/vim-bookmarks"
+
+
+" 缩紧美化插件
+" 需要 vim conceal 编译环境
+" 已成功
+Plugin "Yggdroot/indentLine"
+
+
+" 多行编辑
+" 已成功 / 待学习命令
+Plugin "terryma/vim-multiple-cursors"
+
+
+" 快速替换
+" 未学些 / 未配置
+Plugin "tpope/vim-repeat"
+
+
+" ack可以替代99％的用途grep
+" 没有配置 / 待命令学习
+Plugin "mileszs/ack.vim"
+
+
+" 快速搜索文件
+" 已成功 / 待学习
+Plugin "kien/ctrlp.vim"
+
+
+" 快速生成标签周围
+" 已安装 / 待学习
+Plugin "tpope/vim-surround"
+
+
+" 中文帮助文档
+" 需安装文件包
+" mkdir -p ~/.vim/pack/foo/start
+" cd ~/.vim/pack/foo/start
+" git clone git://github.com/yianwillis/vimcdoc.git
+
+" Plugin "yianwillis/vimcdoc"
+
+if version >= 603
+    set helplang=cn
+    set encoding=utf-8
+    set fileencoding=utf-8
+endif
+
+
+" markdown 语插件
+
+Plugin "plasticboy/vim-markdown"
+
+" markdown 实时预览插件
+
+Plugin "suan/vim-instant-markdown", {"rtp": "after"}
+
+
+" ----------------------- Basic Plugins End ！ --------------------------------
+
+
+
+
+" ----------------------- HTML Plugins Start ！ -------------------------------
+
+
+" 代码提示
+" 已安装 / 待学习命令
+Plugin "shougo/neocomplete.vim"
+
+
+" 语法补全
+" Plugin "valloric/youcompleteme"
+
+
+" 快速注释
+" 已安装 / 待学习命令
+Plugin "scrooloose/nerdcommenter"
+
+
+" 语法检查 “ 异步执行 ”
+" 已安装 / 待熟练
+Plugin "w0rp/ale"
+
+
+" 已安装 / 待熟练
+Plugin "scrooloose/syntastic"
+
+
+" vim 语言包集合
+" 需安装包
+" mkdir -p ~/.vim/pack/default/start
+" git clone https://github.com/sheerun/vim-polyglot ~/.vim/pack/default/start/vim-polyglot
+Plugin "sheerun/vim-polyglot"
+
+
+" HTML5 +内联SVG omnicomplete函数，缩进和Vim的语法
+Plugin "othree/html5.vim"
+
+
+" 标签快速生成
+Plugin "rstacruz/sparkup"
+
+
+" 自动闭合html标签
+Plugin "alvan/vim-closetag"
+
+
+" 一个简单易用的Vim对齐插件
+" 已安装 / 待学习
+Plugin "junegunn/vim-easy-align"
+
+
+" ----------------------- HTML Plugins End ！ ---------------------------------
+
+
+
+" ----------------------- CSS Plugins Start ！ --------------------------------
+
+
+" CSS 语法高亮
+Plugin "hail2u/vim-css3-syntax"
+
+
+" 大括号补全
+Plugin "Raimondi/delimitMate"
+
+
+" HTML5 / css3 快速标签生成
+" 已安装 / 待学习
+" <c-y> 为生成快捷键
+Plugin "mattn/emmet-vim"
+
+
+" 为 css 添加语法突出显示、缩进和自动完成
+Plugin "groenewege/vim-less"
+
+
+" 可视化颜色属性
+Plugin "ap/vim-css-color"
+
+
+" 自动补全后大括号
+" Plugin "raimondi/delimitmate"
+
+
+" ----------------------- CSS Plugins End ！ ----------------------------------
+
+
+
+" ----------------------- JavaScript Plugins Start ！ -------------------------
+
+
+
+" 提供 JavaScript 语法突出显示和改进的缩进
+Plugin "pangloss/vim-javascript"
+
+
+" JavaScript 语法高亮
+Plugin "jelera/vim-javascript-syntax"
+
+
+" javascript 缩进辅助
+Plugin "nathanaelkane/vim-indent-guides"
+
+
+
+" ----------------------- JavaScript Plugins End ！ ---------------------------
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+" 你的所有插件需要在下面这行之前
+
+call vundle#end()            " 必须
+filetype plugin indent on    " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
+
+
+" 忽视插件改变缩进,可以使用以下替代:
+" filetype plugin on
+
+
+" 常用命令
+" :PluginList       - 查看已经安装的插件
+" :PluginInstall    - 安装插件
+" :PluginUpdate     - 更新插件
+" :PluginSearch     - 搜索插件，例如 :PluginSearch xml就能搜到xml相关的插件
+" :PluginClean      - 删除插件，把安装插件对应行删除，然后执行这个命令即可
+
+" h: vundle         - 获取帮助
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" ----------------------- Vim Plugins Setting Start ！-------------------------
+
+
+" airline theme setting start -------------------------------------------------
+" -----------------------------------------------------------------------------
+
+" 设置 airline theme 灰色及简 主题
+" let g:airline_theme="minimalist"
+
+
+" theme web: https://github.com/sainnhe/edge
+" important!!
+set termguicolors
+
+" for dark version
+set background=dark
+
+" for light version
+" set background=light
+
+" the configuration options should be placed before `colorscheme edge`
+let g:edge_style = "neon"
+let g:edge_disable_italic_comment = 1
+
+colorscheme edge
+
+" 设置状态栏样式
+" 必须有样式文件 
+let g:airline_theme = "edge"
+
+" airline theme setting end ---------------------------------------------------
+
+" airline & airline theme setting start ---------------------------------------
+
+
+if !exists("g:airline_symbols")
+let g:airline_symbols = {}
+endif
+
+
+let g:airline_left_sep = "»"
+let g:airline_left_sep = "▶"
+let g:airline_right_sep = "«"
+let g:airline_right_sep = "◀"
+let g:airline_symbols.crypt = "🔒"
+let g:airline_symbols.linenr = "☰"
+let g:airline_symbols.linenr = "␊"
+let g:airline_symbols.linenr = "␤"
+let g:airline_symbols.linenr = "¶"
+let g:airline_symbols.maxlinenr = ""
+let g:airline_symbols.maxlinenr = "㏑"
+let g:airline_symbols.branch = "⎇"
+let g:airline_symbols.paste = "ρ"
+let g:airline_symbols.paste = "Þ"
+let g:airline_symbols.paste = "∥"
+let g:airline_symbols.spell = "Ꞩ"
+let g:airline_symbols.notexists = "Ɇ"
+let g:airline_symbols.whitespace = "Ξ"
+
+
+set t_Co=256
+set laststatus=2
+set lazyredraw
+
+
+" 根据匹配的colorscheme自动选择主题
+let g:airline_theme="powerlineish"
+
+" 使用powerline打过补丁的字体
+let g:airline_powerline_fonts=1
+
+
+if !exists("g:airline_symbols")
+    let g:airline_symbols={}
+endif
+
+
+" 合成警告
+let airline#extensions#syntastic#stl_format_warn = "%W{[%fw(#%w)]}"
+
+" 关闭空白符检测
+let g:airline#extensions#whitespace#enabled = 0
+
+
+" 是否打开tabline
+" 打开后，tabline和tmuxline都可以得到增强
+let g:airline#extensions#tabline#enabled = 1
+
+
+" airline & aitline theme setting end -----------------------------------------
+
+
+" neocomplete setting start ---------------------------------------------------
+
+
+"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ "default" : "",
+    \ "vimshell" : $HOME."/.vimshell_hist",
+    \ "scheme" : $HOME."/.gosh_completions"
+        \ }
+
+" Define keyword.
+if !exists("g:neocomplete#keyword_patterns")
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns["default"] = "\h\w*"
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists("g:neocomplete#sources#omni#input_patterns")
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = "[^. \t]->\h\w*\|\h\w*::"
+"let g:neocomplete#sources#omni#input_patterns.c = "[^.[:digit:] *\t]\%(\.\|->\)"
+"let g:neocomplete#sources#omni#input_patterns.cpp = "[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::"
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = "\h\w*->\h\w*\|\h\w*::"
+
+
+
+" neocomplete setting end -----------------------------------------------------
+
+
+
+
+" near tree & tagbar setting start --------------------------------------------
+
+
+" NerdTree
+
+" 去除第一行的帮助提示
+let NERDTreeMinimalUI=1
+
+" 在左边占多宽
+let NERDTreeWinSize=28
+
+" 不高亮显示光标所在的文件
+let NERDTreeHighlightCursorline=0
+
+" 当前目录的设定
+let NERDTreeChDirMode = 2
+
+" 自动退出
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+
+" 打开vim时自动打开
+autocmd vimenter * NERDTree
+
+" 让配置变更立即生效
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
+" <F2>作为toggle
+map <F2> : NERDTreeToggle<CR>
+
+
+" 关闭NERDTree快捷键
+map <leader>t :NERDTreeToggle<CR>
+
+" 显示行号
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter=1
+
+" 是否显示隐藏文件
+let NERDTreeShowHidden=1
+
+" 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" 忽略一下文件的显示
+let NERDTreeIgnore=["\.pyc","\~$","\.swp"]
+
+" 显示书签列表
+let NERDTreeShowBookmarks=1
+
+
+let g:NERDTreeIndicatorMapCustom = {
+  \ "Modified"  : "✹",
+  \ "Staged"    : "✚",
+  \ "Untracked" : "✭",
+  \ "Renamed"   : "➜",
+  \ "Unmerged"  : "═",
+  \ "Deleted"   : "✖",
+  \ "Dirty"     : "✗",
+  \ "Clean"     : "✔︎",
+  \ "Ignored"   : "☒",
+  \ "Unknown"   : "?"
+  \ }
+
+" o       在已有窗口中打开文件、目录或书签，并跳到该窗口
+" i       split 一个新窗口打开选中文件，并跳到该窗口
+" s       vsplit 一个新窗口打开选中文件，并跳到该窗口
+
+" C       将选中目录或选中文件的父目录设为根结点
+" u       将当前根结点的父目录设为根目录，并变成合拢原根结点
+
+
+" m       显示文件系统菜单
+" R       递归刷新根结点
+
+" D       删除当前书签
+" cd      将 CWD 设为选中目录
+
+
+
+" Tagbar
+
+"设置在 vim 左边显示
+let g:tagbar_left=0 
+
+" 在这儿设定二者的分布
+let g:tagbar_vertical = 24
+
+" 去除第一行的帮助信息
+let g:tagbar_compact = 1
+
+" 当编辑代码时，在Tagbar自动追踪变量
+let g:tagbar_autoshowtag = 1
+
+" 个人爱好，展开关闭文件夹的图标
+let g:tagbar_iconchars = ["▸", "▾"]
+
+" <F3>作为toggle
+nmap <F3> :TagbarToggle<CR>
+
+" 打开vim时自动打开
+autocmd VimEnter * nested :TagbarOpen
+wincmd l
+
+" 设置 tagbar 宽度
+let g:tagbar_vertical = 28
+let g:tagbar_width = 28
+
+" 每个级别缩进的空格数
+let g:tagbar_indent = 1
+
+" 单击而不是双击来跳转到标签定义
+let g:tagbar_singleclick = 1
+
+" 如果不加这句，打开vim的时候当前光标会在Nerdtree区域
+autocmd VimEnter * wincmd l
+
+" 处理错误: Tagbar: Ctags doesn"t seem to be Exuberant Ctags!
+let g:Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
+
+
+
+" bookmarks
+
+"NERDTree Settings{
+    let NERDTreeWinPos ="left"          " 将NERDTree的窗口设置在gvim窗口的左边
+    let NERDTreeShowBookmarks=1         " 当打开NERDTree窗口时，自动显示Bookmarks
+"}
+
+
+" near tree & tagbar setting end ----------------------------------------------
+
+
+
+
+" nerd commenter setting start ------------------------------------------------
+
+
+" 注释的时候自动加个空格, 强迫症必配
+let g:NERDSpaceDelims=1
+
+" \ca在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
+" \cc注释当前行
+" \c<space> 切换注释/非注释状态
+" \cs 以”性感”的方式注释
+" \cA 在当前行尾添加注释符，并进入Insert模式
+" \cu 取消注释
+" \c$ 从光标开始到行尾注释  ，这个要说说因为c$也是从光标到行尾的快捷键，这个按过逗号（，）要快一点按c$
+" 2\cc 光标以下count行添加注释
+" 2\cu 光标以下count行取消注释
+" 2\cm:光标以下count行添加块注释(2,cm)
+
+
+" nerd commenter setting start ------------------------------------------------
+
+
+
+
+" bookmark setting start ------------------------------------------------------
+
+
+let g:bookmark_sign = "¶"                       " 无名书签标记
+let g:bookmark_annotation_sign = "§"            " 有名书签标记
+let g:bookmark_auto_close = 1                   " 跳转后自动关闭书签列表
+let g:bookmark_highlight_lines = 1              " 高亮书签行
+let g:bookmark_center = 1                       " 跳转后书签行置中
+
+
+let g:bookmark_annotation_sign = "##"           "注释(说明)书签符号
+let g:bookmark_no_default_key_mappings = 1      " 使用默认快捷键
+
+highlight link BookmarkLine SpellBad            " 书签高亮
+highlight link BookmarkAnnotationLine SpellBad  " 书签高亮
+
+
+" 使用位置列表显示所有书签（默认为0）
+let g:bookmark_location_list = 1
+
+
+" 默认按键映射
+
+" nmap <Leader> <Leader> <Plug> BookmarkToggle
+
+" nmap <Leader> i <Plug> BookmarkAnnotate
+
+" nmap <Leader> a <Plug> BookmarkShowAll
+
+" nmap <Leader> j <Plug> BookmarkNext
+
+" nmap <Leader> k <Plug> BookmarkPrev
+
+" nmap <Leader> c <Plug> BookmarkClear
+
+" nmap <Leader> x <Plug> BookmarkClearAll
+
+
+" “这些也适用于[count]前缀
+" nmap <Leader> kk <Plug> BookmarkMoveUp
+
+" nmap <Leader> jj <Plug> BookmarkMoveDown
+
+" nmap <Leader> g <Plug> BookmarkMoveToLine
+
+
+
+" bookmark setting end ---------------------------------------------------------
+
+
+
+
+" ctrip setting strat ----------------------------------------------------------
+
+
+let g:ctrlp_map = "<leader>p"
+let g:ctrlp_cmd = "CtrlP"
+
+map <leader>f :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = {
+    \ "dir":  "\v[\/]\.(git|hg|svn|rvm)$",
+    \ "file": "\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$",
+    \ }
+
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+
+
+" <leader>f   # 模糊搜索最近打开的文件(MRU)
+" <leader>p   # 模糊搜索当前目录及其子目录下的所有文件
+
+" ctrl + j/k  # 进行上下选择
+" ctrl + x    # 在当前窗口水平分屏打开文件
+" ctrl + v    # 同上, 垂直分屏
+" ctrl + t    # 在tab中打开
+
+" F5          # 刷新可搜索文件
+" <c-d>       # 只能搜索全路径文件
+" <c-r>       # 可以使用正则搜索文件
+
+
+" strip setting end ------------------------------------------------------------
+
+
+
+
+" easymotion setting strat -----------------------------------------------------
+
+
+let g:EasyMotion_smartcase = 1
+" let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)
+
+" easymotion setting strat -----------------------------------------------------
+
+
+
+
+" ale setting start ------------------------------------------------------------
+
+
+"设置状态栏显示的内容
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
+
+" 始终开启标志列
+let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
+
+" 自定义error和warning图标
+let g:ale_sign_error = "✗"
+let g:ale_sign_warning = "⚡"
+
+" 在vim自带的状态栏中整ale
+let g:ale_statusline_format = ["✗ %d", "⚡ %d", "✔ OK"]
+
+" 显示Linter名称,出错或警告等相关信息
+let g:ale_echo_msg_error_str = "E"
+let g:ale_echo_msg_warning_str = "W"
+let g:ale_echo_msg_format = "[%linter%] %s [%severity%]"
+
+" 普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+
+" <Leader>s触发/关闭语法检查
+nmap <Leader>s :ALEToggle<CR>
+
+" <Leader>d查看错误或警告的详细信息
+nmap <Leader>d :ALEDetail<CR>
+
+
+" ale setting end --------------------------------------------------------------
+
+
+
+
+" syntastic setting start ------------------------------------------------------
+
+
+" 设置 error 和 warning 的标志
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol="✗"
+let g:syntastic_warning_symbol="►"
+
+
+" 总是打开Location List（相当于QuickFix）窗口，如果你发现syntastic因为与其他插件冲突而经常崩溃，将下面选项置0
+let g:syntastic_always_populate_loc_list = 0
+
+" 自动打开Locaton List，默认值为2，表示发现错误时不自动打开，当修正以后没有再发现错误时自动关闭，置1表示自动打开自动关闭，0表示关闭自动打开和自动关闭，3表示自动打开，但不自动关闭
+let g:syntastic_auto_loc_list = 1
+
+" 修改Locaton List窗口高度
+let g:syntastic_loc_list_height = 5
+
+" 打开文件时自动进行检查
+let g:syntastic_check_on_open = 1
+
+" 自动跳转到发现的第一个错误或警告处
+let g:syntastic_auto_jump = 1
+
+" 进行实时检查，如果觉得卡顿，将下面的选项置为1
+let g:syntastic_check_on_wq = 0
+
+" 高亮错误
+let g:syntastic_enable_highlighting=1
+
+" 让syntastic支持C++11
+let g:syntastic_cpp_compiler = "clang++"
+let g:syntastic_cpp_compiler_options = " -std=c++11 -stdlib=libc++"
+
+" 设置pyflakes为默认的python语法检查工具
+let g:syntastic_python_checkers = ["pyflakes"]
+
+" 修复syntastic使用:lnext和:lprev出现的跳转问题，同时修改键盘映射使用sn和sp进行跳转
+function! <SID>LocationPrevious()
+  try
+    lprev
+  catch /^Vim\%((\a\+)\)\=:E553/
+    llast
+  endtry
+endfunction
+function! <SID>LocationNext()
+  try
+    lnext
+  catch /^Vim\%((\a\+)\)\=:E553/
+    lfirst
+  endtry
+endfunction
+nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe "call <SID>LocationPrevious()"<CR>
+nnoremap <silent> <Plug>LocationNext        :<C-u>exe "call <SID>LocationNext()"<CR>
+nmap <silent> sp    <Plug>LocationPrevious
+nmap <silent> sn    <Plug>LocationNext
+
+" 关闭syntastic语法检查, 鼠标复制代码时用到, 防止把错误标志给复制了
+nnoremap <silent> <Leader>ec :SyntasticToggleMode<CR>
+function! ToggleErrors()
+    let old_last_winnr = winnr("$")
+    lclose
+    if old_last_winnr == winnr("$")
+        " Nothing was closed, open syntastic error location panel
+        Errors
+    endif
+endfunction
+
+
+" syntastic setting end -------------------------------------------------------
+
+
+
+
+" indentline setting start ----------------------------------------------------
+
+
+let g:indentLine_concealcursor = "inc"
+let g:indentLine_conceallevel = 2
+
+let g:indentLine_enabled = 1
+let g:indentLine_color_term = 239
+let g:indentLine_char = "¦"
+
+
+" indentline setting start ----------------------------------------------------
+
+
+
+
+" multiple cursors setting start ----------------------------------------------
+
+
+" let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = "<C-n>"
+let g:multi_cursor_select_all_word_key = "<A-n>"
+let g:multi_cursor_start_key           = "g<C-n>"
+let g:multi_cursor_select_all_key      = "g<A-n>"
+let g:multi_cursor_next_key            = "<C-n>"
+let g:multi_cursor_prev_key            = "<C-p>"
+let g:multi_cursor_skip_key            = "<C-x>"
+let g:multi_cursor_quit_key            = "<Esc>"
+
+if !has("gui_running")
+  map "in Insert mode, type Ctrl+v Alt+n here" <A-n>
+endif
+
+
+" multiple cursors setting start ----------------------------------------------
+
+
+
+
+" command t setting start -----------------------------------------------------
+
+
+" /t & CommandT 开始搜索框
+
+" ctrl + n ( j ) 匹配下一个接近的结果
+" ctrl + p ( k ) 匹配上一个接近的结果
+
+" ctrl + t  打开到新 tab
+" ctrl + v  打开成水平分割窗口
+" enter     打开到目前窗口
+
+
+" command t setting end --------------------------------------------------------
+
+
+
+
+" surround setting start -------------------------------------------------------
+
+
+" normal mode
+
+" ds  ： 删除包围
+" cs  ： 修改包围
+" ys  ： 添加包围
+" yS  ： 添加包围并替换包围文本
+" yss ： 添加一行包围
+" ySs ： 添加包围内容独成一行
+" ySS ： 添加包围内容独成一行
+
+
+" visual mode
+
+" s   ： 给选中内容添加包围
+" S   ： 选中内容添加包围并独成一行
+
+" insert mode
+
+
+" <CTRL-s> ： 添加一个包围
+" <CTRL-s><CTRL-s> ： 添加包围内容独成一行
+" <CTRL-g>s ： 添加一个包围
+" <CTRL-g>S ： 添加包围内容独成一行
+
+
+" surround setting end --------------------------------------------------------
+
+
+
+
+" HTML5 setting start ---------------------------------------------------------
+
+
+" 禁用事件处理程序属性支持
+" let g:html5_event_handler_attributes_complete = 0
+
+" 禁用RDFa属性支持
+" let g:html5_rdfa_attributes_complete = 0
+
+" 禁用微数据属性支持
+" let g:html5_microdata_attributes_complete = 0
+
+" 禁用WAI-ARIA属性支持
+" let g:html5_aria_attributes_complete = 0
+
+
+" HTML5 setting  end ---------------------------------------------------------
+
+
+
+
+" vim closetag setting start -------------------------------------------------
+
+
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = "*.xhtml,*.jsx"
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = "html,xhtml,phtml"
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = "xhtml,jsx"
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won"t.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ "typescript.tsx": "jsxRegion,tsxRegion",
+    \ "javascript.jsx": "jsxRegion",
+    \ }
+
+" Shortcut for closing tags, default is ">"
+"
+let g:closetag_shortcut = ">"
+
+
+" Add > at current position without closing the current tag, default is ""
+"
+let g:closetag_close_shortcut = "<leader>>"
+
+
+" 用法例如，以下是当前内容：
+
+" "<table|
+" 现在你按>，内容将是：
+
+" <table>|</table>
+" 现在，如果>再次按下，内容将是：
+
+" <table>
+"     |
+" </table>
+
+
+" vim closetag setting end ----------------------------------------------------
+
+
+
+
+" emmet setting start ---------------------------------------------------------
+
+
+" 规定 emmet 在什么模式下使用
+let g:user_emmet_mode="n"    "only enable normal mode functions.
+let g:user_emmet_mode="inv"  "enable all functions, which is equal to
+let g:user_emmet_mode="a"    "enable all function in all mode.
+
+let g:use_emmet_complete_tag = 1
+let g:user_emmet_settings = {"lang":"zh-cn"}
+
+" 可重新映射快捷键
+" let g:user_emmet_leader_key="<C-Z>"
+
+" 仅为 html / css 启用
+" let g:user_emmet_install_global = 0
+" autocmd FileType html,css EmmetInstall
+
+" 需要配合 web-api 使用，可定义自己的 snippets.json （ 代码片段库 ）
+" let g:user_emmet_settings = webapi#json#decode(join(readfile(expand("~/.snippets_custom.json")), "\n"))
+
+
+" emmet setting end ------------------------------------------------------------
+
+
+
+
+" javascript setting end -------------------------------------------------------
+
+
+" 为JSDocs启用语法突出显示( 默认值：0 )
+let g:javascript_plugin_jsdoc = 1
+
+
+" 为NGDoc启用一些额外的语法突出显示。还需要启用JSDoc插件( 默认值：0 )
+let g:javascript_plugin_ngdoc = 1
+
+
+" 为NGDoc启用一些额外的语法突出显示。还需要启用JSDoc插件 ( 默认值：0 )
+let g:javascript_plugin_ngdoc = 1
+
+
+" 为Flow启用语法突出显示 ( 默认值：0 )
+let g:javascript_plugin_flow = 1
+
+
+" javascript setting end -------------------------------------------------------
+
+
+
+
+" emmet setting end ------------------------------------------------------------
+
+
+
+
+
+
+execute pathogen#infect()
+call pathogen#helptags()
+
+
+
+" ----------------------- Vim Plugins Setting End ！----------------------------
+
+
+execute pathogen#infect()
+call pathogen#helptags()
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+
+" vundle的 插件 配置到此结束，下面是你自己的配置
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+" ----------------------- Basic Setting Start ！-------------------------------
+
+
+
+set nocompatible           		" 不与 Vi 兼容（采用 Vim 自己的操作命令）
+
+
+
+syntax on                  		" 语法高亮
+set clipboard=unnamed                   " 共享剪切板
+
+set mouse=a                             " 激活鼠标
+set scrolloff=10                        " 在光标接近底端或顶端时，自动下滚或上滚
+
+
+
+set showmode                            " 底部展示模式
+
+set t_Co=256                            " 设置使用颜色
+
+
+
+set encoding=utf-8                      " 设置编码
+language messages zh_CN.utf-8           " 解决consle输出乱码
+
+
+
+source $VIMRUNTIME/delmenu.vim          " 解决菜单乱码
+source $VIMRUNTIME/menu.vim             " 解决菜单乱码
+
+
+
+filetype plugin indent on  		" 根据检测到的文件类型加载插件
+
+
+
+set helplang=cn                         " 设置帮助信息
+set ruler                               " 显示标尺，就是在右下角显示光标位置
+
+
+
+" ----------------------- Basic Setting End ！---------------------------------
+
+
+
+
+" ----------------------- Cover Setting End ！---------------------------------
+
+
+
+set cmdheight=2                         " 设置命令行的高度
+set textwidth=80			" 一行显示多少个字符
+set wrap				" 自动折行,太长的行分成几行显示
+
+
+set wrapmargin=2			" 折行处与编辑窗口的右边缘之间空出的字符数
+set scrolloff=5				" 垂直滚动时，光标距离顶部/底部的位置
+set sidescrolloff=15			" 水平滚动时，光标距离行首或行尾的位置
+
+
+
+set browsedir=buffer                    " 设定文件浏览器目录为当前目录
+set autochdir                           " 自动切换当前目录为当前文件所在的目录
+set autoread                            " 自动重新加载外部修改内容
+
+
+set noerrorbells			" 出错时，不要发出响声
+set visualbell				" 出错时，发出视觉提示
+
+
+set history=1000			" Vim 需要记住多少次历史操作
+
+
+
+" ----------------------- Cover Setting End ！---------------------------------
+
+
+
+
+" ----------------------- Search Setting Start ！------------------------
+
+
+
+set incsearch              		" 用/或？搜索时突出显示
+set hlsearch             		" 保持匹配突出显示
+
+
+set ignorecase                          " 搜索时大小写不敏感
+set smartcase                           " 如果有一个大写字母，切换大小写敏感查找
+set wildmenu                            " vim 自身命令行模式智能补全
+
+
+" 当光标一段时间保持不动了，就禁用高亮
+autocmd cursorhold * set nohlsearch
+
+
+" 当输入查找命令时，再启用高亮
+noremap n :set hlsearch<cr>n
+noremap N :set hlsearch<cr>N
+noremap / :set hlsearch<cr>/
+noremap ? :set hlsearch<cr>?
+noremap * *:set hlsearch<cr>
+
+
+" ----------------------- Search Setting End ！------------------------
+
+
+
+
+" ----------------------- Edit Setting Start ！------------------------
+
+
+
+set number                   		" 显示行号
+" set relativenumber			" 显示相对行号
+
+
+
+set cursorline                          " 高亮显示当前 - 行
+
+hi CursorLine   cterm=NONE ctermbg=237 ctermfg=NONE guibg=NONE guifg=NONE
+
+set cursorcolumn                        " 高亮显示当前 - 列
+
+hi CursorColumn cterm=NONE ctermbg=237 ctermfg=NONE guibg=NONE guifg=NONE
+
+
+
+set autoindent             		" 按前一行缩进
+set expandtab              		" 使用空格而不是制表符
+
+
+set softtabstop =4         		" Tab 键 缩进 4个空格
+set shiftwidth  =4         		" >> tab 缩紧 4个空格
+set shiftround             		" >> 缩进到"shiftwidth"的下一个倍数
+
+
+
+" ----------------------- Edit Setting Start ！--------------------------------
+
+
+
+
+" ----------------------- Otner Setting Start ！-------------------------------
+
+
+
+set backspace   =indent,eol,start       " 按照您的预期使退格工作
+set hidden                 		" 在缓冲区之间切换而不必先保存 
+set laststatus  =2         		" 始终显示状态行 
+set display     =lastline  		" 尽可能多地显示最后一行 
+
+
+set showmode               		" 在命令行中显示当前模式
+set showcmd                		" 当需要更多键时，显示已键入的键
+
+
+set ttyfast                		" 更快地重绘
+set lazyredraw             		" 仅在必要时重绘 
+
+
+set splitbelow             		" 打开当前窗口下方的新窗口
+set splitright             		" 在当前窗口右侧打开新窗口
+
+
+set cursorline             		" 快速查找当前行
+set wrapscan               		" 搜索环绕文件末尾
+set report      =0         		" 始终报告更改的行 
+set synmaxcol   =200       		" 仅突出显示前200列 
+
+
+
+" 如果行尾有多余的空格（包括 Tab 键），该配置将让这些空格显示成可见的小方块
+set listchars=tab:»■,trail:■
+set list
+
+
+" 底部操作指令按下 Tab 键自动补全
+" 第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令
+set wildmenu
+set wildmode=longest:list,full
+
+
+" 去除标签栏中文件路径信息
+function ShortTabLabel ()
+    let bufnrlist = tabpagebuflist (v:lnum)
+    let label = bufname (bufnrlist[tabpagewinnr (v:lnum) -1])
+    let filename = fnamemodify (label, ":t")
+    return filename
+endfunction
+set guitablabel=%{ShortTabLabel()}
+
+
+
+" ----------------------- Other Setting End ！----------------------------------
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+
+" set list                   " 显示不可打印的字符 
+
+if has("multi_byte") && &encoding ==# "utf-8"
+  let &listchars = "tab:▸ ,extends:❯,precedes:❮,nbsp:±"
+else
+  let &listchars = "tab:> ,extends:>,precedes:<,nbsp:."
+endif
+
+
+
+" The fish shell is not very compatible to other shells and unexpectedly
+" breaks things that use "shell".
+if &shell =~# "fish$"
+  set shell=/bin/bash
+endif
+
+
+
+" 将所有临时文件放在同一目录下
+" https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
+
+
+
+set backup
+set backupdir   =$HOME/.vim/files/backup/
+set backupext   =-vimbackup
+set backupskip  =
+set directory   =$HOME/.vim/files/swap//
+set updatecount =100
+set undofile
+set undodir     =$HOME/.vim/files/undo/
+set viminfo     ="100,n$HOME/.vim/files/info/viminfo"
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+' > ~/.vimrc && source ~/.vimrc

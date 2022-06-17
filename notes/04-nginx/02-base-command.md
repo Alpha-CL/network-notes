@@ -109,20 +109,21 @@ server {
 
     #error_page  404              /404.html;
 
-    # redirect server error pages to the static page /50x.html
+    # redirect server error pages to the static page /50x.html      # 将服务器错误页面重定向到静态页面 /50x.html
     #
     error_page   500 502 503 504  /50x.html;
     location = /50x.html {
         root   /usr/share/nginx/html;
     }
 
-    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80     # 代理 PHP 脚本到 Apache 监听 127.0.0.1:80
     #
     #location ~ \.php$ {
     #    proxy_pass   http://127.0.0.1;
     #}
 
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    # 将 PHP 脚本传递给在 127.0.0.1:9000 上侦听的 FastCGI 服务器
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000    
     #
     #location ~ \.php$ {
     #    root           html;
@@ -132,6 +133,7 @@ server {
     #    include        fastcgi_params;
     #}
 
+    # 允许访问 .htaccess 文件，如果 Apache 的文档根目录
     # deny access to .htaccess files, if Apache's document root
     # concurs with nginx's one
     #
@@ -144,18 +146,119 @@ server {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ```
 
-####
+#### location
 
 ``` javascript
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/**
- * 
- * 
- * 
- * 
- */
+// 匹配规则
+
+    location [=|~|~*|^~|@] /uri/ {
+        ...
+    } 
+
+    =       // 表示精确匹配后面的url
+    ~       // 表示正则匹配，但是区分大小写
+    ~*      // 正则匹配，不区分大小写
+    ^~      // 表示普通字符匹配，如果该选项匹配，只匹配该选项，不匹配别的选项，一般用来匹配目录
+    @       // "@" 定义一个命名的 location，使用在内部定向时，例如 error_page
+
+
+// 上述匹配规则的优先匹配顺序：
+
+    1. = 前缀的指令严格匹配这个查询。如果找到，停止搜索
+    2. 所有剩下的常规字符串，最长的匹配。如果这个匹配使用 ^~ 前缀，搜索停止
+    3. 正则表达式，在配置文件中定义的顺序
+    4. 如果第 3 条规则产生匹配的话，结果被使用。否则，使用第 2 条规则的结果
+
+
+//-------------------------------------------------------------------------------------------------------------------//
+
+
+@server_name: 域名/IP
+@listen: 监听的端口号
+
+同一个 *.conf 文件可以有多个 "location [path] {}"
+
+
+//-------------------------------------------------------------------------------------------------------------------//
+
+
+// 代理 [server_name]:[listen]/ 路由代理至 /usr/share/nginx/html/index 
+
+location / {
+
+    root   /usr/share/nginx/html;
+    index  index.html index.htm;
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------//
+
+
+// 代理 [server_name]:[listen]/test 路由代理至 /usr/share/nginx/html/index 
+
+location /test {
+
+    root   /usr/share/nginx/html;
+    index  index.html index.htm;
+}
+
+
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
+
+
+// 代理 [server_name]:[listen]/test 路由代理至 localhost:8080 的服务
+
+location /test {
+
+    proxy_pass  localhost:8080
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+```
+
+``` javascript
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// 防盗链
+
+location ~* \.(gif|jpg|swf)$ {
+
+    valid_referers none blocked start.igrow.cn sta.igrow.cn;
+    if ($invalid_referer) {
+       rewrite ^/ http://$host/logo.png;
+    }
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------//
+
+
+// 根据文件类型设置过期时间
+
+location ~* \.(js|css|jpg|jpeg|gif|png|swf)$ {
+
+    if (-f $request_filename) {
+        expires 1h;
+        break;
+    }
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------//
+
+
+// 禁止访问某个目录
+
+location ~* \.(txt|doc)${
+
+    root /data/www/wwwroot/linuxtone/test;
+    deny all;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
